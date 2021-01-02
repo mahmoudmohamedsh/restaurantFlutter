@@ -6,7 +6,7 @@ class LoginScreen extends StatelessWidget {
     final _formKey = GlobalKey<FormState>();
 
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20,vertical: 30),
+      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
       child: Form(
         key: _formKey,
         child: Column(
@@ -36,12 +36,27 @@ class LoginScreen extends StatelessWidget {
                   // If the form is valid, display a snackbar. In the real world,
                   // you'd often call a server or save the information in a database.
 
-                  Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text('Processing Data'),duration: const Duration(seconds: 2) ,));
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                    content: Text('Processing Data'),
+                    duration: const Duration(seconds: 2),
+                  ));
                 }
               },
               child: Text('Submit'),
-            )
+            ),
+            //
+            //button to test some firebase function
+            //
+            ElevatedButton(
+              onPressed: () {
+                
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text('done'),
+                  duration: const Duration(seconds: 2),
+                ));
+              },
+              child: Text('do some firebase'),
+            ),
           ],
         ),
       ),
