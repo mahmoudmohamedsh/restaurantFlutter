@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/screens/login_screen.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
+import 'package:restaurant/homepage.dart';
+import 'package:restaurant/screens/account.dart';
+import 'package:restaurant/screens/bottomNavBar.dart';
+import 'package:restaurant/screens/itemdetails.dart';
+import 'package:restaurant/screens/products.dart';
+import 'package:restaurant/screens/searchScreen.dart';
+void main()=> runApp(MyApp());
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        body: LoginScreen(),
-      ),
+      home: BottomNavBar(),
+      routes: {
+        'account': (context) => Account(),
+        'search': (context) => SearchScreen(),
+        'homepage': (context) => HomePage(),
+        'itemDetails': (context)=>ItemDetails(),
+        'products': (context) => Products(),
+
+      },
     );
   }
 }
-
