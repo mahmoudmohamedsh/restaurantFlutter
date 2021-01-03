@@ -39,3 +39,31 @@ class AuthService {
   }
 
 }
+
+
+
+
+/**
+ * 
+ */
+
+// add some ref
+                // DocumentReference test = db.collection("cart").doc("user");
+                // db
+                //     .collection("test")
+                //     .add({"ref": test, "num": 12})
+                //     .then((value) => Scaffold.of(context).showSnackBar(SnackBar(
+                //           content: Text('done'),
+                //           duration: const Duration(seconds: 2),
+                //         )))
+                //     .catchError((e) => print(e.toString()));
+                //---------------------------------------------------------------------
+                // List<DocumentReference> a;
+                // db
+                //     .collection("test")
+                //     .get()
+                //     .then((QuerySnapshot querySnapshot) => {
+                //           querySnapshot.docs.forEach((doc) {
+                //             a.add(doc["ref"]);
+                //           })
+                //         });
