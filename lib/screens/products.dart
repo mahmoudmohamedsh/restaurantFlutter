@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant/models/productItem.dart';
+import 'package:restaurant/providers/productProvider.dart';
 import 'package:restaurant/screens/item.dart';
 
 class Products extends StatefulWidget {
@@ -8,17 +11,21 @@ class Products extends StatefulWidget {
 }
 
 class _ProductsState extends State<Products> {
-  List itemImage=[
-  'images/download1.jpg',
-  'images/download2.jpg',
-  'images/download3.jpg',
-  'images/download4.jpg',
-  'images/download1.jpg',
-  'images/download2.jpg',
-  'images/download3.jpg',
-  'images/download4.jpg'];
+  bool _init= true;
+  List<ProductItem> items = [];
+  @override
+  void didChangeDependencies() async {
+    if(_init){
+      Provider.of<ProductProvider>(context).setProductItem();
+      _init = false;
+    }
+    super.didChangeDependencies();
+  }
+  
   @override
   Widget build(BuildContext context) {
+    
+   items =Provider.of<ProductProvider>(context).getItems();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -30,7 +37,7 @@ class _ProductsState extends State<Products> {
         bottom: PreferredSize(
             child: ListTile(
               leading: Text(
-                '${itemImage.length} Items',
+                '${items.length} Items',
                 style: TextStyle(
                   color: Colors.grey,
                   fontSize: 20.0,
@@ -49,9 +56,12 @@ class _ProductsState extends State<Products> {
         elevation: 0.0,
         iconTheme: IconThemeData(color: Colors.black, size: 20.0),
         actions: [
-          Icon(
-            Icons.favorite_border,
-          ),
+          IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () {
+            Provider.of<ProductProvider>(context).addProduct();
+          },
+        ),
         ],
       ),
       backgroundColor: Colors.white,
@@ -65,9 +75,9 @@ class _ProductsState extends State<Products> {
             crossAxisSpacing: 10.0
           ),
           scrollDirection: Axis.vertical,
-          itemCount: itemImage.length,
+          itemCount: items.length,
           itemBuilder: (context,index){
-            return Item(itemImage[index]);
+            return Item(product:items[index]);
           },
         ),
       ),
