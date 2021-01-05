@@ -16,7 +16,7 @@ class _ProductsState extends State<Products> {
   @override
   void didChangeDependencies() async {
     if(_init){
-      Provider.of<ProductProvider>(context).setProductItem();
+      Provider.of<ProductProvider>(context,listen: false).setProductItem();
       _init = false;
     }
     super.didChangeDependencies();
@@ -59,7 +59,7 @@ class _ProductsState extends State<Products> {
           IconButton(
           icon: Icon(Icons.add),
           onPressed: () {
-            Provider.of<ProductProvider>(context).addProduct();
+            Provider.of<ProductProvider>(context,listen: false).addProduct();
           },
         ),
         ],

@@ -32,18 +32,18 @@ class ProductProvider with ChangeNotifier {
 
   Future<void> addProduct() {
     CollectionReference productref =
-        FirebaseFirestore.instance.collection('users');
+        FirebaseFirestore.instance.collection('product');
     // Call the user's CollectionReference to add a new user
     return productref
         .add({
           "name": "test",
-          "resturent": "test",
+          "restorent": "test",
           "details": "test",
           "price": 10,
           "offer": 20,
           "image": "link"
         })
         .then((value) => notifyListeners())
-        .catchError((error) => print("Failed to add user: $error"));
+        .catchError((error) => print("Failed to add product: $error"));
   }
 }
