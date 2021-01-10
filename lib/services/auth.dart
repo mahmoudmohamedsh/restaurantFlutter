@@ -4,27 +4,37 @@ import 'package:firebase_auth/firebase_auth.dart';
 class AuthService {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
+  //stream to check user auth or not 
+  Stream<User> get getUser {
+    return _auth.authStateChanges();
+  }
   // sign in with email and password
   Future signInWithEmailAndPassword(String email, String password) async {
     try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
-      return null;
+      UserCredential result= await _auth.signInWithEmailAndPassword(email: email, password: password);
+      User user = result.user;
+      return user;
     } on FirebaseAuthException catch (e){
-      return e.message;
+
+      print("Firebase auth exeption : ${e.toString()}");
+      return null;
     } catch (error) {
-      print(error.toString());
+      print("erron in auth : ${error.toString()}");
+      return null;
     }
   }
   // register with email and password
   Future registerWithEmailAndPassword(String email, String password) async {
     try {
-      await _auth.createUserWithEmailAndPassword(email: email, password: password);
-      return null;
+       UserCredential result =  await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      User user = result.user;
+      return user;
     } on FirebaseAuthException catch (e){
-      return e.message;
+      print("Firebase register exeption : ${e.toString()}");
+      return null;
     } catch (error) {
-      print(error.toString());
+     print("erron in register : ${error.toString()}");
+      return null;
     }
   }
 
@@ -32,8 +42,8 @@ class AuthService {
   Future signOut() async {
     try {
       return await _auth.signOut();
-    } catch (error) {
-      print(error.toString());
+    } catch (e) {
+      print(e.toString());
       return null;
     }
   }

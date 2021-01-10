@@ -93,14 +93,16 @@ class _HomePageState extends State<HomePage> {
                 image: DecorationImage(
                     image: AssetImage('images/download5.jpg'),
                     alignment: Alignment.centerRight),
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.white,
-                    Colors.white10,
-                  ],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                ),
+                // gradient: LinearGradient(
+
+                  // colors: [
+                  //   Colors.white,
+                  //   Colors.white10,
+                  // ],
+                //   begin: Alignment.centerLeft,
+                //   end: Alignment.centerRight,
+                  
+                // ),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
